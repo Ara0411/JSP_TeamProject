@@ -1,4 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*, com.example.jsp_pr.dao.DBUtill" %>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>DB 연결 테스트</title>
+</head>
+<body>
 <%
     Connection conn = null;
     try {
@@ -14,3 +23,5 @@
         if (conn != null) conn.close();
     }
 %>
+</body>
+</html>
