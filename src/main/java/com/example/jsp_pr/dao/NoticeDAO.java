@@ -107,7 +107,26 @@ public class NoticeDAO {
         return dto;
     }
 
-    // 4. 자원 해제 (close) - 반복되니까 메소드로 뺌
+    // 4. 공지사항 삭제 (DELETE) - 이 부분이 빠져있어서 500 에러가 났던 겁니다!
+    public int deleteNotice(int id) {
+        Connection conn = null;
+        PreparedStatement pstmt = null;
+        int result = 0;
+        String sql = "DELETE FROM board_notice WHERE id = ?";
+
+        try {
+            conn = DBUtill.getConnection();
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, id);
+            result = pstmt.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close(conn, pstmt, null);
+        }
+        return result;
+    }
+    // 5. 자원 해제 (close) - 반복되니까 메소드로 뺌
     private void close(Connection conn, PreparedStatement pstmt, ResultSet rs) {
         try {
             if (rs != null) rs.close();

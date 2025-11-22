@@ -1,16 +1,131 @@
-body {
-    font-family: '맑은 고딕', sans-serif;
-    margin: 0;
-    padding: 0;
+/* ===== 기본 리셋 ===== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f3f4f6; color: #111827; }
+a { text-decoration: none; color: inherit; }
+
+/* ===== 레이아웃 ===== */
+.layout { width: 100%; max-width: 980px; margin: 0 auto; padding: 20px; display: flex; flex-direction: column; min-height: 100vh; }
+.content-wrap { display: flex; flex-direction: row; gap: 24px; margin-top: 20px; flex: 1; align-items: flex-start; }
+
+/* ===== [핵심] 왼쪽 메뉴 디자인 (왼쪽 사진처럼 만들기) ===== */
+.menu {
+    width: 220px;
+    min-width: 220px;
+    flex-shrink: 0;
+    background: #ffffff; /* 흰색 배경 */
+    border: 1px solid #e5e7eb;
+    border-radius: 18px; /* 둥글게 */
+    padding: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02); /* 그림자 추가 */
 }
-a {
-    text-decoration: none;
-    color: black;
-    margin: 0 10px;
+
+.menu h3 {
+    font-size: 15px; font-weight: 700; color: #111827; margin-bottom: 12px; letter-spacing: 0.05em;
 }
-a:hover {
-    color: #007bff;
+
+.menu ul { list-style: none; margin-bottom: 24px; padding: 0; }
+.menu li { margin-bottom: 6px; }
+
+.menu a {
+    display: flex; align-items: center; gap: 12px; /* 아이콘 간격 넓힘 */
+    padding: 10px 12px; /* 여백 늘림 */
+    border-radius: 8px;
+    font-size: 15px; font-weight: 500; color: #4b5563;
+    transition: 0.2s;
 }
-main {
-    padding: 20px;
+
+.menu a:hover { background: #f3f4f6; color: #2563eb; transform: translateX(3px); }
+
+.quick-menu-title { margin-top: 20px; border-top: 1px solid #e5e7eb; padding-top: 20px; }
+
+/* ===== 오른쪽 메인 콘텐츠 ===== */
+.main { flex-grow: 1; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+
+/* 카드 공통 */
+.card { background: #ffffff; border-radius: 18px; padding: 20px 22px; border: 1px solid #e5e7eb; }
+
+/* 헤더 */
+.header { height: 64px; padding: 0 20px; background: #111827; color: #ffffff; display: flex; align-items: center; justify-content: space-between; border-radius: 12px; }
+.header-left { display: flex; align-items: baseline; gap: 8px; }
+.logo { font-weight: 700; font-size: 20px; }
+.user-info { color: #e5e7eb; margin-right: 10px; }
+
+/* 버튼 */
+.btn-outline, .btn-primary { padding: 6px 14px; border-radius: 999px; font-size: 13px; border: 1px solid rgba(156, 163, 175, 0.8); background: transparent; color: #e5e7eb; cursor: pointer; }
+.btn-primary { border-color: #3b82f6; background: #2563eb; color: #fff; }
+
+/* 메인 섹션 */
+.welcome-section { background: #ffffff; border-radius: 18px; padding: 24px; border: 1px solid #e5e7eb; }
+.welcome-section h2 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+.welcome-text { font-size: 14px; color: #4b5563; line-height: 1.6; margin-bottom: 20px; }
+
+.quick-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.quick-card { border-radius: 12px; padding: 16px; border: 1px solid #e5e7eb; background: #f9fafb; }
+.quick-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+.quick-card p { font-size: 12px; color: #6b7280; }
+
+/* 게시판 요약 (Grid 강제) */
+.board-overview { display: grid !important; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; }
+.board-card { background: #ffffff; border-radius: 18px; padding: 20px; border: 1px solid #e5e7eb; height: 100%; }
+.board-card-header { display: flex; justify-content: space-between; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #f3f4f6; }
+.board-card-header h3 { font-size: 16px; font-weight: 600; }
+.more-link { font-size: 12px; color: #6b7280; }
+
+/* 리스트 */
+.board-list { list-style: none; padding: 0; }
+.board-list li { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f9fafb; font-size: 14px; }
+.board-list a { color: #374151; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; margin-right: 15px; }
+.board-list .date { color: #9ca3af; font-size: 12px; flex-shrink: 0; }
+
+/* 푸터 */
+.footer { margin-top: auto; padding: 20px; text-align: center; font-size: 12px; color: #6b7280; background: transparent; border-top: 1px solid #e5e7eb; }
+
+/* 1. 헤더 가로 꽉 채우기 & 둥근 모서리 제거 (선택 사항) */
+.header {
+    width: 100%;      /* 가로 꽉 채움 */
+    border-radius: 0; /* 둥근 모서리 제거 (원하신다면) */
+    margin-bottom: 20px; /* 아래 내용과 간격 */
+    /* 만약 둥근 모서리를 유지하면서 꽉 채우려면 width만 100%로 하세요 */
+}
+
+/* 2. 빠른 링크 (파란색 글씨) */
+/* .menu a 대신 .quick-links a 를 따로 지정해서 색상을 덮어씁니다 */
+.quick-links a {
+    color: #2563eb !important; /* 파란색 강제 적용 */
+    font-weight: 600;          /* 글자 조금 더 두껍게 */
+}
+
+/* 3. 메뉴 바 길이 늘리기 */
+.menu {
+    /* height: fit-content;  <-- 이걸 지우거나 주석 처리하세요 */
+    min-height: 600px;       /* 최소 높이를 줘서 길게 만듭니다 */
+    /* 또는 height: 100%; 로 하면 내용만큼 늘어납니다 */
+}
+/* ▼▼▼▼▼ [최종 디테일 수정] ▼▼▼▼▼ */
+
+/* 1. 헤더를 직사각형으로 꽉 채우기 */
+.header {
+    border-radius: 0 !important; /* 둥근 모서리 제거 */
+    width: 100% !important;      /* 가로 꽉 채우기 */
+    margin-bottom: 20px;         /* 아래 내용과 간격 */
+}
+
+/* 2. 빠른 링크 (공지 작성, 자유글 작성) 파란색으로 변경 */
+/* '빠른 메뉴' 제목 바로 다음에 나오는 목록(ul)의 링크(a)를 선택 */
+.quick-menu-title + ul a {
+    color: #2563eb !important;   /* 쨍한 파란색 */
+    font-weight: 600 !important; /* 글자 두껍게 */
+    background: transparent !important; /* 배경색 제거 (글자만 보이게) */
+    padding-left: 0 !important;  /* 왼쪽 여백 줄여서 딱 붙게 */
+}
+
+.quick-menu-title + ul a:hover {
+    text-decoration: underline !important; /* 마우스 올리면 밑줄 */
+    background: transparent !important;
+    transform: none !important;  /* 움직임 효과 제거 */
+}
+
+/* 3. 메뉴 바 길이 늘리기 (원하시면 사용) */
+.menu {
+    min-height: 600px; /* 메뉴 박스를 길게 늘림 */
 }
