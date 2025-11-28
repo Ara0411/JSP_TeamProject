@@ -1,131 +1,393 @@
 /* ===== 기본 리셋 ===== */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #f3f4f6; color: #111827; }
-a { text-decoration: none; color: inherit; }
-
-/* ===== 레이아웃 ===== */
-.layout { width: 100%; max-width: 980px; margin: 0 auto; padding: 20px; display: flex; flex-direction: column; min-height: 100vh; }
-.content-wrap { display: flex; flex-direction: row; gap: 24px; margin-top: 20px; flex: 1; align-items: flex-start; }
-
-/* ===== [핵심] 왼쪽 메뉴 디자인 (왼쪽 사진처럼 만들기) ===== */
-.menu {
-    width: 220px;
-    min-width: 220px;
-    flex-shrink: 0;
-    background: #ffffff; /* 흰색 배경 */
-    border: 1px solid #e5e7eb;
-    border-radius: 18px; /* 둥글게 */
-    padding: 24px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02); /* 그림자 추가 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.menu h3 {
-    font-size: 15px; font-weight: 700; color: #111827; margin-bottom: 12px; letter-spacing: 0.05em;
+html, body {
+    height: 100%;
 }
 
-.menu ul { list-style: none; margin-bottom: 24px; padding: 0; }
-.menu li { margin-bottom: 6px; }
-
-.menu a {
-    display: flex; align-items: center; gap: 12px; /* 아이콘 간격 넓힘 */
-    padding: 10px 12px; /* 여백 늘림 */
-    border-radius: 8px;
-    font-size: 15px; font-weight: 500; color: #4b5563;
-    transition: 0.2s;
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #f3f4f6;
+    color: #111827;
 }
 
-.menu a:hover { background: #f3f4f6; color: #2563eb; transform: translateX(3px); }
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
-.quick-menu-title { margin-top: 20px; border-top: 1px solid #e5e7eb; padding-top: 20px; }
+/* ===== 공통 요소 ===== */
 
-/* ===== 오른쪽 메인 콘텐츠 ===== */
-.main { flex-grow: 1; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
 /* 카드 공통 */
-.card { background: #ffffff; border-radius: 18px; padding: 20px 22px; border: 1px solid #e5e7eb; }
-
-/* 헤더 */
-.header { height: 64px; padding: 0 20px; background: #111827; color: #ffffff; display: flex; align-items: center; justify-content: space-between; border-radius: 12px; }
-.header-left { display: flex; align-items: baseline; gap: 8px; }
-.logo { font-weight: 700; font-size: 20px; }
-.user-info { color: #e5e7eb; margin-right: 10px; }
-
-/* 버튼 */
-.btn-outline, .btn-primary { padding: 6px 14px; border-radius: 999px; font-size: 13px; border: 1px solid rgba(156, 163, 175, 0.8); background: transparent; color: #e5e7eb; cursor: pointer; }
-.btn-primary { border-color: #3b82f6; background: #2563eb; color: #fff; }
-
-/* 메인 섹션 */
-.welcome-section { background: #ffffff; border-radius: 18px; padding: 24px; border: 1px solid #e5e7eb; }
-.welcome-section h2 { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
-.welcome-text { font-size: 14px; color: #4b5563; line-height: 1.6; margin-bottom: 20px; }
-
-.quick-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.quick-card { border-radius: 12px; padding: 16px; border: 1px solid #e5e7eb; background: #f9fafb; }
-.quick-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
-.quick-card p { font-size: 12px; color: #6b7280; }
-
-/* 게시판 요약 (Grid 강제) */
-.board-overview { display: grid !important; grid-template-columns: 1fr 1fr; gap: 20px; width: 100%; }
-.board-card { background: #ffffff; border-radius: 18px; padding: 20px; border: 1px solid #e5e7eb; height: 100%; }
-.board-card-header { display: flex; justify-content: space-between; margin-bottom: 12px; padding-bottom: 10px; border-bottom: 1px solid #f3f4f6; }
-.board-card-header h3 { font-size: 16px; font-weight: 600; }
-.more-link { font-size: 12px; color: #6b7280; }
-
-/* 리스트 */
-.board-list { list-style: none; padding: 0; }
-.board-list li { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid #f9fafb; font-size: 14px; }
-.board-list a { color: #374151; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; margin-right: 15px; }
-.board-list .date { color: #9ca3af; font-size: 12px; flex-shrink: 0; }
-
-/* 푸터 */
-.footer { margin-top: auto; padding: 20px; text-align: center; font-size: 12px; color: #6b7280; background: transparent; border-top: 1px solid #e5e7eb; }
-
-/* 1. 헤더 가로 꽉 채우기 & 둥근 모서리 제거 (선택 사항) */
-.header {
-    width: 100%;      /* 가로 꽉 채움 */
-    border-radius: 0; /* 둥근 모서리 제거 (원하신다면) */
-    margin-bottom: 20px; /* 아래 내용과 간격 */
-    /* 만약 둥근 모서리를 유지하면서 꽉 채우려면 width만 100%로 하세요 */
+.card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 20px 22px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
+    border: 1px solid rgba(148, 163, 184, 0.18);
 }
 
-/* 2. 빠른 링크 (파란색 글씨) */
-/* .menu a 대신 .quick-links a 를 따로 지정해서 색상을 덮어씁니다 */
+/* 작은 캡션 텍스트 */
+.text-muted {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+/* ===== 헤더 ===== */
+
+.header {
+    height: 64px;
+    padding: 0 32px;
+    background: #111827;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(55, 65, 81, 0.8);
+}
+
+.header-left {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.02em;
+}
+
+.logo-sub {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.user-info {
+    color: #e5e7eb;
+}
+
+/* 버튼 스타일 */
+.btn-outline,
+.btn-primary {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    border: 1px solid rgba(156, 163, 175, 0.8);
+    background: transparent;
+    color: #e5e7eb;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-outline:hover {
+    background: rgba(249, 250, 251, 0.06);
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.35);
+}
+
+.btn-primary {
+    border-color: #3b82f6;
+    background: #2563eb;
+    color: #f9fafb;
+}
+
+.btn-primary:hover {
+    background: #1d4ed8;
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+}
+
+/* ===== 메인 레이아웃 ===== */
+
+.content-wrap {
+    display: flex;
+    flex: 1;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 18px 28px;
+    gap: 18px;
+}
+
+/* ===== 사이드바 ===== */
+
+.sidebar {
+    width: 220px;
+    padding: 18px 16px;
+    background: rgba(249, 250, 251, 0.96);
+    border-radius: 18px;
+    border: 1px solid rgba(209, 213, 219, 0.8);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.03);
+    flex-shrink: 0;
+}
+
+.sidebar-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.menu-list,
+.quick-links {
+    list-style: none;
+}
+
+.menu-list {
+    margin-bottom: 18px;
+}
+
+.menu-list li + li {
+    margin-top: 6px;
+}
+
+.menu-list a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #4b5563;
+    transition: background 0.15s ease, color 0.15s ease, transform 0.08s ease;
+}
+
+.menu-list a::before {
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 999px;
+    background: transparent;
+    margin-right: 2px;
+}
+
+.menu-list a:hover {
+    background: #eef2ff;
+    color: #1d4ed8;
+    transform: translateX(2px);
+}
+
+.menu-list a:hover::before {
+    background: #6366f1;
+}
+
+.sidebar-section {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 12px;
+    margin-top: 8px;
+}
+
+.sidebar-section h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: #6b7280;
+    margin-bottom: 6px;
+}
+
+.quick-links li + li {
+    margin-top: 4px;
+}
+
 .quick-links a {
-    color: #2563eb !important; /* 파란색 강제 적용 */
-    font-weight: 600;          /* 글자 조금 더 두껍게 */
+    font-size: 13px;
+    color: #2563eb;
+    padding: 4px 0;
 }
 
-/* 3. 메뉴 바 길이 늘리기 */
-.menu {
-    /* height: fit-content;  <-- 이걸 지우거나 주석 처리하세요 */
-    min-height: 600px;       /* 최소 높이를 줘서 길게 만듭니다 */
-    /* 또는 height: 100%; 로 하면 내용만큼 늘어납니다 */
-}
-/* ▼▼▼▼▼ [최종 디테일 수정] ▼▼▼▼▼ */
+/* ===== 메인 콘텐츠 ===== */
 
-/* 1. 헤더를 직사각형으로 꽉 채우기 */
-.header {
-    border-radius: 0 !important; /* 둥근 모서리 제거 */
-    width: 100% !important;      /* 가로 꽉 채우기 */
-    margin-bottom: 20px;         /* 아래 내용과 간격 */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
-/* 2. 빠른 링크 (공지 작성, 자유글 작성) 파란색으로 변경 */
-/* '빠른 메뉴' 제목 바로 다음에 나오는 목록(ul)의 링크(a)를 선택 */
-.quick-menu-title + ul a {
-    color: #2563eb !important;   /* 쨍한 파란색 */
-    font-weight: 600 !important; /* 글자 두껍게 */
-    background: transparent !important; /* 배경색 제거 (글자만 보이게) */
-    padding-left: 0 !important;  /* 왼쪽 여백 줄여서 딱 붙게 */
+/* 웰컴 섹션 */
+
+.welcome-section {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 22px 24px 22px;
+    border: 1px solid rgba(209, 213, 219, 0.8);
+    box-shadow: 0 18px 35px rgba(15, 23, 42, 0.06);
 }
 
-.quick-menu-title + ul a:hover {
-    text-decoration: underline !important; /* 마우스 올리면 밑줄 */
-    background: transparent !important;
-    transform: none !important;  /* 움직임 효과 제거 */
+.welcome-section h2 {
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 4px;
 }
 
-/* 3. 메뉴 바 길이 늘리기 (원하시면 사용) */
-.menu {
-    min-height: 600px; /* 메뉴 박스를 길게 늘림 */
+.welcome-text {
+    margin-top: 4px;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+/* 빠른 이동 카드 */
+
+.quick-actions {
+    margin-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.quick-card {
+    border-radius: 14px;
+    padding: 14px 14px 13px;
+    border: 1px solid rgba(209, 213, 219, 0.9);
+    background: linear-gradient(135deg, #f9fafb, #f3f4ff);
+    box-shadow: 0 10px 25px rgba(148, 163, 184, 0.25);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+}
+
+.quick-card h3 {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.quick-card p {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.quick-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px rgba(148, 163, 184, 0.45);
+    border-color: #6366f1;
+}
+
+/* ===== 게시판 요약 카드 ===== */
+
+.board-overview {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.board-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 18px 20px 16px;
+    border: 1px solid rgba(209, 213, 219, 0.9);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.05);
+}
+
+.board-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.board-card-header h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.more-link {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.more-link:hover {
+    color: #2563eb;
+}
+
+/* 게시판 리스트 */
+
+.board-list {
+    list-style: none;
+    margin-top: 4px;
+}
+
+.board-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 0;
+    border-bottom: 1px solid #f3f4f6;
+    font-size: 13px;
+}
+
+.board-list li:last-child {
+    border-bottom: none;
+}
+
+.board-list a {
+    max-width: 70%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #111827;
+}
+
+.board-list a:hover {
+    color: #2563eb;
+}
+
+.board-list .date {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+/* ===== 푸터 ===== */
+
+.footer {
+    padding: 14px 24px 18px;
+    text-align: center;
+    font-size: 12px;
+    color: #6b7280;
+    border-top: 1px solid #e5e7eb;
+    background: #f9fafb;
+    margin-top: auto;
+}
+
+.footer-sub {
+    margin-top: 2px;
+}
+
+/* ===== 반응형 ===== */
+
+@media (max-width: 900px) {
+    .content-wrap {
+        flex-direction: column;
+        padding: 16px 14px 22px;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .board-overview {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
 }

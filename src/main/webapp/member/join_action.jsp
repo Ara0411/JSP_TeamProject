@@ -4,16 +4,19 @@
 <%
     request.setCharacterEncoding("UTF-8");
 
+    // 파라미터 수신
     String id = request.getParameter("id");
     String pass = request.getParameter("pass");
     String name = request.getParameter("name");
 
+    // DTO에 데이터 담기
     MemberDTO dto = new MemberDTO();
     dto.setId(id);
     dto.setPass(pass);
     dto.setName(name);
     // role은 DAO에서 자동으로 'USER'(일반회원)로 넣도록 되어 있음
 
+    // DB 저장 시도
     MemberDAO dao = new MemberDAO();
     int result = dao.join(dto);
 

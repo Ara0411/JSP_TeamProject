@@ -1,15 +1,11 @@
-/* ============================================== */
-/* [1] DB 초기화 (기존 거 삭제 후 새로 생성)        */
-/* ============================================== */
+/* [1] DB 초기화 (기존 거 삭제 후 새로 생성)   */
 DROP DATABASE IF EXISTS teamdb;
 CREATE DATABASE teamdb DEFAULT CHARACTER SET utf8mb4;
 USE teamdb;
 
-/* ============================================== */
-/* [2] 테이블 생성 (자바 DTO와 이름 일치시킴)       */
-/* ============================================== */
+/* [2] 테이블 생성      */
 
-/* 1. 회원 테이블 (관리자 구분용 role 추가) */
+/* 1. 회원 테이블 (role 컬럼으로 관리자/일반회원 구분) */
 CREATE TABLE member (
                         id          VARCHAR(50) PRIMARY KEY COMMENT '아이디',
                         pass        VARCHAR(50) NOT NULL    COMMENT '비밀번호',
@@ -19,7 +15,7 @@ CREATE TABLE member (
                         regdate     DATETIME DEFAULT NOW()  COMMENT '가입일'
 );
 
-/* 2. 공지사항 (관리자용, 상단고정 기능) - id 컬럼 사용 */
+/* 2. 공지사항 (관리자 전용, is_fixed로 중요 공지 상단 고정) */
 CREATE TABLE board_notice (
                               id          INT AUTO_INCREMENT PRIMARY KEY COMMENT '글번호',
                               title       VARCHAR(200) NOT NULL   COMMENT '제목',
@@ -30,7 +26,7 @@ CREATE TABLE board_notice (
                               is_fixed    CHAR(1) DEFAULT 'N'     COMMENT '상단고정(Y/N)'
 );
 
-/* 3. 자유게시판 (회원용) */
+/* 3. 자유게시판 (누구나 작성 가능) */
 CREATE TABLE board_free (
                             id          INT AUTO_INCREMENT PRIMARY KEY COMMENT '글번호',
                             title       VARCHAR(200) NOT NULL   COMMENT '제목',
@@ -40,7 +36,7 @@ CREATE TABLE board_free (
                             regdate     DATETIME DEFAULT NOW()  COMMENT '작성일'
 );
 
-/* 4. 자료실 (파일 업로드용) */
+/* 4. 자료실 (파일 업로드 정보 저장) */
 CREATE TABLE board_file (
                             id          INT AUTO_INCREMENT PRIMARY KEY COMMENT '글번호',
                             title       VARCHAR(200) NOT NULL   COMMENT '제목',
@@ -63,13 +59,11 @@ CREATE TABLE board_comment (
                                FOREIGN KEY (board_id) REFERENCES board_free(id) ON DELETE CASCADE
 );
 
-/* ============================================== */
 /* [3] 기초 데이터 입력 (테스트용)                 */
-/* ============================================== */
 
-/* 관리자 계정 (아이디: admin / 비번: 1234) */
+/* 관리자 계정 생성 (아이디: admin / 비번: 1234) */
 INSERT INTO member (id, pass, name, role) VALUES ('admin', '1234', '관리자', 'ADMIN');
-/* 일반 계정 (아이디: user1 / 비번: 1234) */
+/* 일반 계정 생성 (아이디: user1 / 비번: 1234) */
 INSERT INTO member (id, pass, name, role) VALUES ('user1', '1234', '홍길동', 'USER');
 
 /* 공지사항 샘플 글 */

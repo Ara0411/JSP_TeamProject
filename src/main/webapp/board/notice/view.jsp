@@ -5,7 +5,7 @@
     // 1. 주소창에서 글 번호(id) 가져오기
     String idStr = request.getParameter("id");
     if(idStr == null || idStr.equals("")){
-        response.sendRedirect("list.jsp");
+        response.sendRedirect("list.jsp"); //번호 없으면 목록으로 쫓아내기
         return;
     }
     int id = Integer.parseInt(idStr);
@@ -14,6 +14,7 @@
     NoticeDAO dao = new NoticeDAO();
     NoticeDTO dto = dao.getNoticeDetail(id);
 
+    // 3. 없는 글번호면 경고 띄움
     if(dto == null) {
         out.println("<script>alert('삭제된 글입니다.'); location.href='list.jsp';</script>");
         return;
@@ -36,6 +37,7 @@
             <section class="card">
                 <div style="border-bottom:1px solid #eee; padding-bottom:15px; margin-bottom:20px;">
                     <h2 style="font-size:24px; margin-bottom:10px;">
+                        <%-- 중요 공지는 빨간색 태그 표시 --%>
                         <%= "Y".equals(dto.getIs_fixed()) ? "<span style='color:red'>[중요]</span>" : "" %>
                         <%= dto.getTitle() %>
                     </h2>
@@ -56,7 +58,7 @@
                     <a href="list.jsp" class="btn-outline" style="color:#333;">목록</a>
 
                     <%
-                        // 세션에서 권한(role) 가져오기
+                        // 세션에서 현재 로그인한 사람의 권한 확인
                         String role = (String) session.getAttribute("role");
 
                         // 관리자(ADMIN)일 때만 삭제 버튼 표시

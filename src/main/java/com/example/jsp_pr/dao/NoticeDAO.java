@@ -6,48 +6,48 @@ import com.example.jsp_pr.dto.NoticeDTO;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+// 공지사랑 게시판의 DB 작업을 전담하는 클래스
 public class NoticeDAO {
 
     // 1. 공지사항 글쓰기 (INSERT)
     public void insertNotice(NoticeDTO dto) {
         Connection conn = null;
         PreparedStatement pstmt = null;
-        // is_fixed가 null이면 'N'으로 처리
+        // 상단 고정 체크박스 값이 없으면 기본값 'N'으로 설정
         String fixed = (dto.getIs_fixed() == null) ? "N" : dto.getIs_fixed();
-
+        //쿼리 준비: 제목, 내용, 작성자, 고정여부 (날짜 조회수 자동)
         String sql = "INSERT INTO board_notice (title, content, writer, is_fixed) VALUES (?, ?, ?, ?)";
 
         try {
-            conn = DBUtill.getConnection(); // 기존 팀장님 코드(DBUtill) 사용
+            conn = DBUtill.getConnection(); // 공통 DB 연결 도구
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, dto.getTitle());
             pstmt.setString(2, dto.getContent());
             pstmt.setString(3, dto.getWriter());
-            pstmt.setString(4, fixed); // 상단 고정 여부 ('Y' or 'N')
-            pstmt.executeUpdate();
+            pstmt.setString(4, fixed);
+            pstmt.executeUpdate(); //DB에 전송
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            close(conn, pstmt, null);
+            close(conn, pstmt, null); //자원 반납
         }
     }
 
-    // 2. 공지사항 목록 조회 (SELECT) - 중요 공지(Y)가 먼저 나오고, 나머지는 최신순
+    // 2. 공지사항 목록 조회 (SELECT)
     public List<NoticeDTO> getNoticeList() {
         List<NoticeDTO> list = new ArrayList<>();
         Connection conn = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        // 정렬 핵심: is_fixed 내림차순(Y가 N보다 큼) -> 그 다음 글번호 내림차순
+        // 중요 공지를 최상단에 먼저 보여주고 나머지 최신순 정렬
         String sql = "SELECT * FROM board_notice ORDER BY is_fixed DESC, id DESC";
 
         try {
             conn = DBUtill.getConnection();
             pstmt = conn.prepareStatement(sql);
             rs = pstmt.executeQuery();
-
+            // 결과 반복문으로 돌려 리스트에 담음
             while (rs.next()) {
                 NoticeDTO dto = new NoticeDTO();
                 dto.setId(rs.getInt("id"));
@@ -77,14 +77,14 @@ public class NoticeDAO {
         try {
             conn = DBUtill.getConnection();
 
-            // 조회수 증가 먼저 실행
+            // 읽었으니 조회수 증가시키기
             String updateSql = "UPDATE board_notice SET viewcnt = viewcnt + 1 WHERE id = ?";
             pstmt = conn.prepareStatement(updateSql);
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
             pstmt.close(); // 쓰고 닫기
 
-            // 상세 내용 가져오기
+            // 진짜 글 내용 가져오기
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
             rs = pstmt.executeQuery();
@@ -107,7 +107,7 @@ public class NoticeDAO {
         return dto;
     }
 
-    // 4. 공지사항 삭제 (DELETE) - 이 부분이 빠져있어서 500 에러가 났던 겁니다!
+    // 4. 공지사항 삭제 (DELETE)
     public int deleteNotice(int id) {
         Connection conn = null;
         PreparedStatement pstmt = null;
@@ -118,7 +118,7 @@ public class NoticeDAO {
             conn = DBUtill.getConnection();
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, id);
-            result = pstmt.executeUpdate();
+            result = pstmt.executeUpdate(); //성공하면 1리턴
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

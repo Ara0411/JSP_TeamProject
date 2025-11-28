@@ -2,16 +2,12 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.jsp_pr.dao.NoticeDAO" %>
 <%@ page import="com.example.jsp_pr.dto.NoticeDTO" %>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>JSP 팀 프로젝트</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css?v=final">
-    <%-- webapp/css/style.css --%>
-
-
 </head>
 <body>
 <div class="layout">
@@ -33,11 +29,11 @@
                         <h3>📢 공지사항</h3>
                         <p>팀 공지와 안내를 확인하세요.</p>
                     </a>
-                    <a href="board/freeList.jsp" class="quick-card">
+                    <a href="board/free/list.jsp" class="quick-card">
                         <h3>💬 자유게시판</h3>
                         <p>자유롭게 글을 남겨보세요.</p>
                     </a>
-                    <a href="board/fileList.jsp" class="quick-card">
+                    <a href="board/file/list.jsp" class="quick-card">
                         <h3>📂 자료실</h3>
                         <p>공유 자료를 업로드하고 다운로드하세요.</p>
                     </a>
@@ -45,7 +41,6 @@
             </section>
 
             <section class="board-overview">
-
                 <div class="board-card">
                     <div class="board-card-header">
                         <h3>최근 공지사항</h3>
@@ -53,11 +48,13 @@
                     </div>
                     <ul class="board-list">
                         <%
+                            // NoticeDAO를 사용해 DB에서 최신 공지 5개를 가져옴
                             NoticeDAO noticeDao = new NoticeDAO();
                             List<NoticeDTO> noticeList = noticeDao.getNoticeList();
+
                             if (noticeList == null || noticeList.isEmpty()) {
                         %>
-                        <li style="color:#999; padding:20px; text-align:center;">등록된 공지가 없습니다.</li>
+                        <li style="text-align:center; color:#999; padding:10px;">등록된 공지사항이 없습니다.</li>
                         <%
                         } else {
                             int limit = Math.min(noticeList.size(), 5);
@@ -66,7 +63,8 @@
                         %>
                         <li>
                             <a href="board/notice/view.jsp?id=<%= n.getId() %>">
-                                <%= "Y".equals(n.getIs_fixed()) ? "🔥" : "" %> <%= n.getTitle() %>
+                                <%= "Y".equals(n.getIs_fixed()) ? "🔥" : "" %>
+                                <%= n.getTitle() %>
                             </a>
                             <span class="date"><%= n.getRegdate().toString().substring(0, 10) %></span>
                         </li>
@@ -75,26 +73,21 @@
                             }
                         %>
                     </ul>
-                </div> <div class="board-card">
-                <div class="board-card-header">
-                    <h3>최근 자유게시판</h3>
-                    <a href="board/free/list.jsp" class="more-link">전체 보기 &gt;</a>
                 </div>
-                <ul class="board-list">
-                    <li>
-                        <a href="#">JSP 설정하다 막힌 사람 있나요?</a>
-                        <span class="date">2025-11-19</span>
-                    </li>
-                    <li>
-                        <a href="#">오늘 회의 내용 정리했습니다</a>
-                        <span class="date">2025-11-18</span>
-                    </li>
-                    <li>
-                        <a href="#">다음주 모임 시간 조율해요</a>
-                        <span class="date">2025-11-18</span>
-                    </li>
-                </ul>
-            </div> </section>
+
+                <div class="board-card">
+                    <div class="board-card-header">
+                        <h3>최근 자유게시판</h3>
+                        <a href="board/free/list.jsp" class="more-link">전체 보기 &gt;</a>
+                    </div>
+                    <ul class="board-list">
+                        <li>
+                            <a href="#">자유게시판 글은 목록에서 확인하세요.</a>
+                            <span class="date">2025-11-22</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
         </main>
     </div>
 
@@ -102,4 +95,3 @@
 </div>
 </body>
 </html>
-

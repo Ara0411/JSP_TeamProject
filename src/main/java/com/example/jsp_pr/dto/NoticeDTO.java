@@ -1,9 +1,9 @@
 package com.example.jsp_pr.dto;
 
 import java.sql.Timestamp;
-
+//
 public class NoticeDTO {
-    // 1. 변수 (DB 테이블 컬럼과 똑같이!)
+    // 1. 멤버 변수
     private int id;             // 글 번호
     private String title;       // 제목
     private String content;     // 내용
@@ -15,7 +15,7 @@ public class NoticeDTO {
     // 2. 기본 생성자
     public NoticeDTO() {}
 
-    // 3. Getter & Setter (자동 생성된 코드)
+    // 3. Getter & Setter (외부에서 변수 값을 꺼내거나 넣을 때 사용
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
