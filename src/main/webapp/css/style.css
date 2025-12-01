@@ -391,3 +391,246 @@ a {
         grid-template-columns: 1fr;
     }
 }
+.free-write-card {
+    max-width: 460px;
+    margin: 50px auto;
+    background: #f7f9fe;
+    border-radius: 12px;
+    box-shadow: 0 2px 13px #b5c9fabb;
+    padding: 35px 32px;
+    text-align: center;
+}
+
+.free-write-form label {
+    display: block;
+    text-align: left;
+    margin-bottom: 4px;
+    color: #3556e4;
+    font-weight: bold;
+}
+
+.free-write-form input[type="text"],
+.free-write-form textarea {
+    width: 100%;
+    margin-bottom: 19px;
+    padding: 10px 11px;
+    border: 1.5px solid #b0babe;
+    border-radius: 7px;
+    font-size: 1.02em;
+    background: #fff;
+    transition: border 0.2s;
+}
+
+.free-write-form input:focus,
+.free-write-form textarea:focus {
+    border-color: #3556e4;
+}
+
+.free-write-form textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.free-write-form button.btn-primary {
+    width: 120px;
+    margin: 24px auto 0 auto;
+    display: block;
+    font-size: 1.08em;
+    border-radius: 7px;
+    background: linear-gradient(90deg, #3556e4 55%, #657be3 100%);
+}
+.free-view-card {
+    max-width: 580px;
+    margin: 54px auto 40px auto;
+    background: #fafdff;
+    border-radius: 13px;
+    box-shadow: 0 3px 15px #b5c9fa36;
+    padding: 37px 36px 28px 36px;
+}
+
+.free-view-title {
+    font-size: 1.3em;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: #3349a3;
+}
+
+.free-view-meta {
+    color: #555;
+    font-size: 0.97em;
+    margin-bottom: 18px;
+}
+
+.free-view-meta span {
+    font-weight: 500;
+    color: #283d78;
+}
+
+.free-view-content {
+    min-height: 60px;
+    padding: 16px 0 22px 0;
+    font-size: 1.05em;
+    white-space: pre-line;
+    border-bottom: 1.5px solid #c2d6f1;
+    margin-bottom: 16px;
+}
+
+/* 댓글 박스 */
+.free-view-comment-box {
+    margin-top: 22px;
+    background: #f6f9ff;
+    border-radius: 9px;
+    padding: 16px 15px 10px 15px;
+}
+
+.free-view-comment-title {
+    margin: 0 0 10px 0;
+    font-size: 1.05em;
+    font-weight: 600;
+}
+
+.free-comment-form {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.free-comment-form textarea {
+    flex: 1;
+    min-height: 40px;
+    border-radius: 7px;
+    padding: 8px 10px;
+    font-size: 0.98em;
+    border: 1.2px solid #bbcde8;
+    resize: vertical;
+}
+
+.cmt-btn-primary {
+    background: #4472eb;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 8px 18px;
+    font-size: 0.95em;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cmt-btn-primary:hover {
+    background: #3556e4;
+}
+
+.comment-list {
+    margin-top: 4px;
+}
+
+.comment-item {
+    background: #fff;
+    border-radius: 7px;
+    border: 1px solid #dde5f5;
+    padding: 7px 10px;
+    margin-bottom: 6px;
+    font-size: 0.95em;
+}
+
+.comment-item .date {
+    color: #777;
+    margin-left: 4px;
+    font-size: 0.9em;
+}
+
+.comment-content {
+    margin-top: 3px;
+}
+/* ===== 자유글 수정 카드 ===== */
+.free-edit-card {
+    max-width: 520px;
+    margin: 60px auto 50px auto;
+    background: #fefefe;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    padding: 32px 32px 28px 32px;
+}
+
+.free-edit-card h2 {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.free-edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.free-edit-form label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 2px;
+}
+
+.free-edit-form input[type="text"],
+.free-edit-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    font-size: 0.95rem;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.free-edit-form input[type="text"]:focus,
+.free-edit-form textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.18);
+}
+
+.free-edit-form textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+/* 수정 / 취소 버튼 */
+.free-edit-btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.free-edit-btns .edit-btn-primary,
+.free-edit-btns .edit-btn-outline {
+    padding: 8px 22px;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.free-edit-btns .edit-btn-primary {
+    background: linear-gradient(90deg, #2563eb, #4f46e5);
+    color: #ffffff;
+    border-color: #2563eb;
+}
+
+.free-edit-btns .edit-btn-outline {
+    background: #ffffff;
+    color: #2563eb;
+    border-color: #2563eb;
+}
+
+.free-edit-btns .edit-btn-primary:hover {
+    background: linear-gradient(90deg, #1d4ed8, #4338ca);
+}
+
+.free-edit-btns .edit-btn-outline:hover {
+    background: #eff6ff;
+}

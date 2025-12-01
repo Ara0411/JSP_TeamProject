@@ -29,7 +29,7 @@
                         <h3>📢 공지사항</h3>
                         <p>팀 공지와 안내를 확인하세요.</p>
                     </a>
-                    <a href="board/free/list.jsp" class="quick-card">
+                    <a href="board/free/List.jsp" class="quick-card">
                         <h3>💬 자유게시판</h3>
                         <p>자유롭게 글을 남겨보세요.</p>
                     </a>
@@ -78,7 +78,7 @@
                 <div class="board-card">
                     <div class="board-card-header">
                         <h3>최근 자유게시판</h3>
-                        <a href="board/free/list.jsp" class="more-link">전체 보기 &gt;</a>
+                        <a href="board/free/List.jsp" class="more-link">전체 보기 &gt;</a>
                     </div>
                     <ul class="board-list">
                         <li>
