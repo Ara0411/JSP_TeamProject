@@ -1,4 +1,17 @@
 package com.example.jsp_pr.dto;
+/**
+ * [주석 작성자] 최아라
+ * [클래스 역할] 자료실 게시글(board_file) 한 건을 표현하는 DTO
+ * [주요 필드]
+ *   - id         : PK
+ *   - title      : 글 제목
+ *   - content    : 글 내용
+ *   - writer     : 작성자 (로그인 아이디)
+ *   - filename   : 서버에 실제 저장된 파일명
+ *   - filepath   : 웹에서 접근 가능한 파일 경로 (/upload/file/...)
+ *   - regdate    : 등록일(문자열 형태로 보관)
+ *   - downloadcnt: 다운로드 횟수
+ */
 
 public class BoardFileDTO {
     private int id;
