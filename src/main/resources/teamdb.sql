@@ -38,16 +38,16 @@ CREATE TABLE board_free (
 
 /* 4. 자료실 (파일 업로드 정보 저장) */
 CREATE TABLE board_file (
-                            id          INT AUTO_INCREMENT PRIMARY KEY COMMENT '글번호',
-                            title       VARCHAR(200) NOT NULL   COMMENT '제목',
-                            content     TEXT NOT NULL           COMMENT '내용',
-                            writer      VARCHAR(50) NOT NULL    COMMENT '작성자',
-                            viewcnt     INT DEFAULT 0           COMMENT '조회수',
-                            regdate     DATETIME DEFAULT NOW()  COMMENT '작성일',
-                            org_file    VARCHAR(200)            COMMENT '원본 파일명',
-                            save_file   VARCHAR(200)            COMMENT '저장된 파일명',
-                            downcnt     INT DEFAULT 0           COMMENT '다운로드 횟수'
+                            id INT AUTO_INCREMENT PRIMARY KEY,
+                            title VARCHAR(200) NOT NULL,
+                            content TEXT,
+                            writer VARCHAR(50) NOT NULL,
+                            filename VARCHAR(255) NOT NULL,
+                            filepath VARCHAR(255) NOT NULL,
+                            regdate DATETIME DEFAULT CURRENT_TIMESTAMP,
+                            downloadcnt INT DEFAULT 0
 );
+
 
 /* 5. 댓글 테이블 (자유게시판용) */
 CREATE TABLE board_comment (

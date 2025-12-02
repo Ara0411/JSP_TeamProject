@@ -20,9 +20,6 @@
             <label for="input-content">내용</label>
             <textarea id="input-content" name="content" rows="6" placeholder="내용을 작성해 주세요" required></textarea>
 
-            <label for="input-writer">작성자</label>
-            <input type="text" id="input-writer" name="writer" placeholder="이름 또는 별명" required />
-
             <button type="submit" class="btn-primary">등록</button>
         </form>
     </section>

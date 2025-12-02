@@ -5,8 +5,7 @@
         <li><a href="<%= request.getContextPath() %>/index.jsp">🏠 메인</a></li>
         <li><a href="<%= request.getContextPath() %>/board/notice/list.jsp">📢 공지사항</a></li>
         <li><a href="<%= request.getContextPath() %>/board/free/List.jsp">💬 자유게시판</a></li>
-        <li><a href="<%= request.getContextPath() %>/board/file/list.jsp">📂 자료실</a></li>
-        <li><a href="<%= request.getContextPath() %>/board/qna/list.jsp">❓ Q&amp;A</a></li>
+        <li><a href="<%= request.getContextPath() %>/board/file/fileList.jsp">📂 자료실</a></li>
     </ul>
 
     <div class="sidebar-section">

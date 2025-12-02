@@ -33,7 +33,7 @@
                         <h3>💬 자유게시판</h3>
                         <p>자유롭게 글을 남겨보세요.</p>
                     </a>
-                    <a href="board/file/list.jsp" class="quick-card">
+                    <a href="board/file/fileList.jsp" class="quick-card">
                         <h3>📂 자료실</h3>
                         <p>공유 자료를 업로드하고 다운로드하세요.</p>
                     </a>
